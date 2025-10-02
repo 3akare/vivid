@@ -47,6 +47,6 @@ export async function onAuthenticateUser() {
     return { status: 400 }
   } catch (error) {
     console.error(error);
-    return { status: 500 }
+    return { status: 500, error: 'Internal Server Error' }
   }
 }
