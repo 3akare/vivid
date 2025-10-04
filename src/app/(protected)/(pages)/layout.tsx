@@ -1,7 +1,8 @@
 import { getRecentProjects } from "@/actions/project";
 import { onAuthenticateUser } from "@/actions/user";
 import AppSideBar from "@/components/global/app-sidebar";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import UpperInfoBar from "@/components/global/upper-info-bar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { redirect } from "next/navigation";
 
 type PageLayoutProps = {
@@ -14,6 +15,10 @@ export default async function PageLayout({ children }: PageLayoutProps) {
   return (
     <SidebarProvider>
       <AppSideBar user={auth.user} recentProjects={recentProjects.data || []} />
+      <SidebarInset>
+        <UpperInfoBar user={auth.user} />
+        {children}
+      </SidebarInset>
     </SidebarProvider>
   )
 }
